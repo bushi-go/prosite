@@ -1,0 +1,53 @@
+databaseChangeLog:
+
+  - preConditions:
+      - dbms :
+          type: postgresql
+      - runningAs:
+          username: prosite
+
+  - changeSet:
+      id: 1
+      author: rgoussu
+      changes:
+      - createTable:
+          tableName: user_type
+          columns:
+            - column:
+                name: code
+                type: varchar(3)
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: label
+                type: varchar(250)
+                constraints:
+                  nullable: false
+      - createTable:
+          tableName: user
+          columns:
+            - column:
+                name: usr_id
+                type: bigserial
+                autoIncrement: true
+                constraints:
+                  primaryKey: true 
+                  nullable: false
+            - column:
+                name: firstname
+                type: varchar(250)
+                constraints:
+                  nullable: false
+            - column:
+                name: lastname
+                type: varchar(250)
+                constraints:
+                  nullable: false
+            - column:
+                name: user_type
+                type: varchar(3)
+                constraints:
+                  nullable: false
+                  foreignKeyName: fk_usr_type
+                  references: user_type(code)

@@ -1,0 +1,29 @@
+version: "3"
+services: 
+    pro-site-db:
+        image: postgres:12.3-alpine
+        restart: always
+        environment: 
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - pro-site-data:/var/lib/postgresql/data
+        networks:
+            - pro-site-net
+    adminer:
+        image: adminer
+        ports:
+            - 8100:8080
+        networks: 
+            - pro-site-net
+            
+networks: 
+    pro-site-net:
+        external: true
+volumes: 
+    pro-site-data:
+    
+     
+        
+                  

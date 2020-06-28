@@ -1,0 +1,18 @@
+databaseChangeLog:
+
+  - preConditions:
+    - dbms:
+        type: postgresql
+    - runningAs:
+        username: prosite
+
+  - changeSet:
+      id: 1
+      author: rgoussu
+      changes:
+      - sql:
+          comment: Creating schema for pro site db
+          endDelimiter: ;
+          splitStatements: true
+          sql: CREATE SCHEMA prosite;
+              

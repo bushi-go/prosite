@@ -1,0 +1,13 @@
+databaseChangeLog:
+
+  - preConditions:
+    - dbms:
+        type: 'postgresql'
+    - runningAs:
+        username: 'prosite'
+
+  - include:
+    - file: 'classpath:db/changelog/migrations/db.changelog.0.0.yml'
+
+  - include:
+    - file: 'classpath:db/changelog/migrations/db.changelog.1.0.yml'
